@@ -7,25 +7,19 @@ import Container from '@mui/material/Container';
 
 export default function TestsList() {
   const [tests, setTests] = useState([]);
-  useEffect((errorCallBack) => {
-    fetch('/api/v1/lessonList.json')
+  useEffect(() => {
+    fetch(
+      'https://raw.githubusercontent.com/MVDem/React-app/main/tests/api/v1/lessonList.json'
+    )
       .then((response) => {
         if (response.ok) {
-          console.log(response.json());
-
           return response.json();
         }
       })
       .then((data) => {
-        console.log(data);
-
         return setTests(data);
-      })
-      .catch((error) => {
-        return errorCallBack(error);
       });
   });
-  console.log(tests);
   return (
     <>
       <CssBaseline />
