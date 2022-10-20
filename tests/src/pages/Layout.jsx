@@ -49,10 +49,8 @@ export default function Layout() {
         <Outlet />
       </main>
       <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
-        2022
+        MVDem 2022
       </AppBar>
     </>
   );
 }
-
-/*  */
