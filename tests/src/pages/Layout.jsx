@@ -21,10 +21,10 @@ export default function Layout() {
               </Button>
             </NavLink>
 
-            <NavLink to="/exercise" style={{ textDecoration: 'none' }}>
+            <NavLink to="/tests" style={{ textDecoration: 'none' }}>
               <Button color="inherit">
                 <Typography variant="h7" component="div" sx={{ flexGrow: 1 }}>
-                  Exercise
+                  Tests
                 </Typography>
               </Button>
             </NavLink>

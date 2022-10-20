@@ -26,8 +26,8 @@ export default function TestsList() {
       <Container fixed>
         <Box sx={{ bgcolor: '#e3f2fd', height: '90vh' }}>
           {tests.map((test, i) => (
-            <Link key={i} to={''}>
-              <li>{tests[0]}</li>
+            <Link key={test[0]} to={`/tests/${test[1]}`}>
+              <li>{test[1]}</li>
             </Link>
           ))}
         </Box>
