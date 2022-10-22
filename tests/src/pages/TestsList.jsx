@@ -19,7 +19,7 @@ export default function TestsList() {
       .then((data) => {
         return setTests(data);
       });
-  });
+  }, []);
   return (
     <>
       <CssBaseline />

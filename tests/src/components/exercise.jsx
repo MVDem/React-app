@@ -6,7 +6,8 @@ import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
-import lesson1 from '../server/lesson';
+
+const lesson1 = {};
 
 export default function Example(props) {
   const [value, setValue] = React.useState('');
