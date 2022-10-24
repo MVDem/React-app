@@ -70,7 +70,10 @@ export default function ExercisePage() {
   const stepDisplay = (arr) => {
     return (
       <div key={arr[activeStep].numExercise} className="container">
-        <Exercise handleComplete={handleComplete} elem={arr[activeStep]} />
+        <Exercise
+          // handleComplete={handleComplete}
+          elem={arr[activeStep]}
+        />
       </div>
     );
   };
@@ -86,7 +89,7 @@ export default function ExercisePage() {
                 return (
                   <Step key={index} completed={completed[index]}>
                     <StepButton color="inherit" onClick={handleStep(index)}>
-                      Esercise {elem.numExercise}
+                      {elem.numExercise}
                     </StepButton>
                   </Step>
                 );
