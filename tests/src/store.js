@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import exampleReduser from './components/exercise/exerciseSlice';
-export const store = configureStore({
+import testsReduser from './components/testsSlice';
+export default configureStore({
   reducer: {
-    example: exampleReduser,
+    tests: testsReduser,
   },
 });

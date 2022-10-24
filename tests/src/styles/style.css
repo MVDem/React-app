@@ -1,4 +1,9 @@
-.comp {
+.container {
   display: flex;
   justify-content: center;
+}
+
+.testsList {
+  flex-direction: row;
+  flex-wrap: wrap;
 }

@@ -1,50 +1,31 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Example from '../components/exercise';
+import Exercise from '../components/exercise';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-import '../styles/style.css';
+import { useSelector } from 'react-redux';
 
 export default function ExercisePage() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
-  const [tests, setTests] = useState([]);
-
-  useEffect(() => {
-    fetch(
-      'https://raw.githubusercontent.com/MVDem/React-app/main/tests/api/v1/lessonList.json'
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        return setTests(data);
-      });
-  }, []);
+  const tests = useSelector((state) => state.tests.tests);
 
   const activeTestName = useParams().id;
 
-  const activeTest = tests.filter((elem) => {
-    if (elem.nameTest === activeTestName) {
-      return elem;
-    }
-  });
+  const activeExercises = tests.find(
+    (elem) => elem.nameTest === activeTestName
+  );
 
-  console.log(activeTestName);
-
-  const activeExercises = activeTest[0].test;
+  console.log(activeExercises);
 
   const totalSteps = () => {
-    return activeExercises.length;
+    return activeExercises.test.length;
   };
 
   const completedSteps = () => {
@@ -62,7 +43,7 @@ export default function ExercisePage() {
   const handleNext = () => {
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
-        ? activeExercises.findIndex((step, i) => !(i in completed))
+        ? activeExercises.test.findIndex((step, i) => !(i in completed))
         : activeStep + 1;
     setActiveStep(newActiveStep);
   };
@@ -94,7 +75,7 @@ export default function ExercisePage() {
         <Box sx={{ bgcolor: '#e3f2fd', height: '90vh' }}>
           <Box sx={{ width: '100%', pt: '50px' }}>
             <Stepper nonLinear activeStep={activeStep}>
-              {activeExercises.map((elem, index) => {
+              {activeExercises.test.map((elem, index) => {
                 return (
                   <Step key={index} completed={completed[index]}>
                     <StepButton color="inherit" onClick={handleStep(index)}>
@@ -118,9 +99,9 @@ export default function ExercisePage() {
               ) : (
                 <React.Fragment>
                   <Typography sx={{ mt: 2, mb: 1, py: 1 }}></Typography>
-                  {activeExercises.map((elem, index) => (
-                    <div key={index} className="comp">
-                      <Example handleComplete={handleComplete} elem={elem} />
+                  {activeExercises.test.map((elem, index) => (
+                    <div key={index} className="container">
+                      <Exercise handleComplete={handleComplete} elem={elem} />
                     </div>
                   ))}
                   <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>

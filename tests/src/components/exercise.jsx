@@ -7,31 +7,31 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 
-const lesson1 = {};
-
 export default function Example(props) {
   const [value, setValue] = React.useState('');
   const [error, setError] = React.useState(false);
   const [helperText, setHelperText] = React.useState('Select an answer');
-  const [activeButton, setActiveButton] = React.useState(false);
+  const [activeLable, setActiveLable] = React.useState(false);
+  const [activeButton, setActiveButton] = React.useState(true);
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
     setHelperText(' ');
     setError(false);
+    setActiveButton(false);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (value === lesson1[0].answers[lesson1.trueanswer - 1]) {
+    if (value === props.elem.answers[props.elem.trueanswer - 1]) {
       setHelperText('You answered correctly!');
       setError(false);
-      setActiveButton(true);
+      setActiveLable(true);
     } else if (value) {
       setHelperText('Sorry, wrong answer!');
       setError(true);
-      setActiveButton(true);
+      setActiveLable(true);
     } else {
       setHelperText('Please select an option.');
       setError(true);
@@ -41,7 +41,7 @@ export default function Example(props) {
   return (
     <form onSubmit={handleSubmit}>
       <FormControl sx={{ m: 3 }} error={error} variant="standard">
-        <FormLabel id="demo-error-radios">{lesson1.question}</FormLabel>
+        <FormLabel id="demo-error-radios">{props.elem.question}</FormLabel>
         <RadioGroup
           row
           aria-labelledby="demo-error-radios"
@@ -49,14 +49,14 @@ export default function Example(props) {
           value={value}
           onChange={handleRadioChange}
         >
-          {lesson1[0].answers.map((answer, index) => {
+          {props.elem.answers.map((answer, index) => {
             return (
               <FormControlLabel
                 key={index}
                 value={answer}
                 control={<Radio />}
                 label={answer}
-                disabled={activeButton}
+                disabled={activeLable}
               />
             );
           })}
