@@ -1,28 +1,77 @@
 [
   {
-    "id": 1,
-    "nameTest": "test1",
+    "id": 4,
+    "nameTest": "test4",
     "test": [
       {
         "numExercise": 1,
         "schemeView": 1,
-        "question": "abc",
-        "answers": ["answer1", "answer2", "answer3", "answer4"],
+        "question": "א",
+        "answers": ["гимель", "далет", "алеф", "вав"],
         "trueanswer": 3
       },
       {
         "numExercise": 2,
         "schemeView": 1,
-        "question": "abc",
-        "answers": ["answer1", "answer2", "answer3", "answer4"],
-        "trueanswer": 3
+        "question": "ב",
+        "answers": ["зайн", "йуд", "каф", "бет"],
+        "trueanswer": 4
       },
       {
         "numExercise": 3,
         "schemeView": 1,
-        "question": "abc",
-        "answers": ["answer1", "answer2", "answer3", "answer4"],
+        "question": "ג",
+        "answers": ["хет", "гимель", "ламед", "мэм"],
+        "trueanswer": 2
+      },
+      {
+        "numExercise": 4,
+        "schemeView": 1,
+        "question": "ד",
+        "answers": ["далет", "алеф", "самех", "пей"],
+        "trueanswer": 1
+      },
+      {
+        "numExercise": 5,
+        "schemeView": 1,
+        "question": "ה",
+        "answers": ["хет", "hей", "тав", "куф"],
+        "trueanswer": 2
+      },
+      {
+        "numExercise": 6,
+        "schemeView": 1,
+        "question": "ו",
+        "answers": ["реш", "заин", "нун", "вав"],
+        "trueanswer": 4
+      },
+      {
+        "numExercise": 7,
+        "schemeView": 1,
+        "question": "ז",
+        "answers": ["реш", "заин", "нун", "вав"],
+        "trueanswer": 2
+      },
+      {
+        "numExercise": 8,
+        "schemeView": 1,
+        "question": "ח",
+        "answers": ["hей", "тав", "хет", "куф"],
         "trueanswer": 3
+      },
+      {
+        "numExercise": 9,
+        "schemeView": 1,
+        "question": "ט",
+        "answers": ["хет", "тет", "пэй", "самех"],
+        "trueanswer": 2
+      },
+      {
+        "numExercise": 10,
+        "schemeView": 1,
+        "question": "י",
+        "answers": ["вав", "реш", "нун", "йуд"],
+        "trueanswer": 4
       }
     ]
   },
