@@ -13,6 +13,9 @@ export default function Example(props) {
   const [helperText, setHelperText] = React.useState('Select an answer');
   const [activeLable, setActiveLable] = React.useState(false);
   const [activeButton, setActiveButton] = React.useState(true);
+  const [count, setCount] = React.useState(0);
+
+  console.log(count);
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
@@ -23,11 +26,11 @@ export default function Example(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     if (value === props.elem.answers[props.elem.trueanswer - 1]) {
       setHelperText('You answered correctly!');
       setError(false);
       setActiveLable(true);
+      setCount(count + 1);
     } else if (value) {
       setHelperText('Sorry, wrong answer!');
       setError(true);

@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 export default function ExercisePage() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
+
   const tests = useSelector((state) => state.tests.tests);
 
   const activeTestName = useParams().id;
@@ -21,8 +22,6 @@ export default function ExercisePage() {
   const activeExercises = tests.find(
     (elem) => elem.nameTest === activeTestName
   );
-
-  console.log(activeExercises);
 
   const totalSteps = () => {
     return activeExercises.test.length;
@@ -48,9 +47,9 @@ export default function ExercisePage() {
     setActiveStep(newActiveStep);
   };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
+  // const handleBack = () => {
+  //   setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  // };
 
   const handleStep = (step) => () => {
     setActiveStep(step);
@@ -66,6 +65,14 @@ export default function ExercisePage() {
   const handleReset = () => {
     setActiveStep(0);
     setCompleted({});
+  };
+
+  const stepDisplay = (arr) => {
+    return (
+      <div key={arr[activeStep].numExercise} className="container">
+        <Exercise handleComplete={handleComplete} elem={arr[activeStep]} />
+      </div>
+    );
   };
 
   return (
@@ -89,7 +96,8 @@ export default function ExercisePage() {
               {allStepsCompleted() ? (
                 <React.Fragment>
                   <Typography sx={{ mt: 2, mb: 1 }}>
-                    All steps completed - you&apos;re finished
+                    All steps completed - you&apos;re finished. You answered {}{' '}
+                    questions correctly
                   </Typography>
                   <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                     <Box sx={{ flex: '1 1 auto' }} />
@@ -99,20 +107,16 @@ export default function ExercisePage() {
               ) : (
                 <React.Fragment>
                   <Typography sx={{ mt: 2, mb: 1, py: 1 }}></Typography>
-                  {activeExercises.test.map((elem, index) => (
-                    <div key={index} className="container">
-                      <Exercise handleComplete={handleComplete} elem={elem} />
-                    </div>
-                  ))}
+                  {stepDisplay(activeExercises.test)}
                   <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                    <Button
+                    {/* <Button
                       color="inherit"
                       disabled={activeStep === 0}
                       onClick={handleBack}
                       sx={{ mr: 1 }}
                     >
                       Back
-                    </Button>
+                    </Button> */}
                     <Box sx={{ flex: '1 1 auto' }} />
                     <Button onClick={handleNext} sx={{ mr: 1 }}>
                       Next

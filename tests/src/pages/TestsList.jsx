@@ -33,25 +33,34 @@ export default function TestsList() {
             bgcolor: '#e3f2fd',
             height: '90vh',
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: 'column',
             flexWrap: 'wrap',
             p: 3,
           }}
         >
-          {tests.map((test) => (
-            <div key={test.id}>
-              <Link
-                style={{ textDecoration: 'none', mr: 1 }}
-                to={`/tests/${test.nameTest}`}
-              >
-                <Button variant="outlined">
-                  <Typography variant="h7" component="div" sx={{ flexGrow: 1 }}>
-                    {test.nameTest}
-                  </Typography>
-                </Button>
-              </Link>
-            </div>
-          ))}
+          <div className="titleTestList">
+            <Typography sx={{ mt: 2, mb: 1, mr: 2 }}>Выберите тест:</Typography>
+          </div>
+          <>
+            {tests.map((test) => (
+              <div key={test.id}>
+                <Link
+                  style={{ textDecoration: 'none', mr: 1 }}
+                  to={`/tests/${test.nameTest}`}
+                >
+                  <Button variant="outlined">
+                    <Typography
+                      variant="h7"
+                      component="div"
+                      sx={{ flexGrow: 1 }}
+                    >
+                      {test.nameTest}
+                    </Typography>
+                  </Button>
+                </Link>
+              </div>
+            ))}
+          </>
         </Box>
       </Container>
     </>

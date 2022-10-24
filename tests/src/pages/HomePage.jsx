@@ -8,7 +8,12 @@ export default function MainPage() {
     <>
       <CssBaseline />
       <Container fixed>
-        <Box sx={{ bgcolor: '#e3f2fd', height: '90vh' }}>hello</Box>
+        <Box sx={{ bgcolor: '#e3f2fd', height: '90vh' }}>
+          <h2 className="homePageError">
+            Приложение находится в состоянии разработки.
+          </h2>
+          <p>Вы можете перейти на вкладку "Tests"</p>
+        </Box>
       </Container>
     </>
   );
