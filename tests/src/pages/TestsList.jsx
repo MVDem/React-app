@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { testsAdd } from '../components/testsSlice';
+import { Link } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -24,6 +24,9 @@ export default function TestsList() {
         return dispatch(testsAdd(data));
       });
   }
+
+  // dispatch(countReset());
+
   return (
     <>
       <CssBaseline />

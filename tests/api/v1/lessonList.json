@@ -58,20 +58,6 @@
         "question": "ח",
         "answers": ["hей", "тав", "хет", "куф"],
         "trueanswer": 3
-      },
-      {
-        "numExercise": 9,
-        "schemeView": 1,
-        "question": "ט",
-        "answers": ["хет", "тет", "пэй", "самех"],
-        "trueanswer": 2
-      },
-      {
-        "numExercise": 10,
-        "schemeView": 1,
-        "question": "י",
-        "answers": ["вав", "реш", "нун", "йуд"],
-        "trueanswer": 4
       }
     ]
   },
@@ -82,23 +68,58 @@
       {
         "numExercise": 1,
         "schemeView": 1,
-        "question": "abc",
-        "answers": ["answer1", "answer2", "answer3", "answer4"],
-        "trueanswer": 3
+        "question": "ט",
+        "answers": ["хет", "тет", "пэй", "самех"],
+        "trueanswer": 2
       },
       {
         "numExercise": 2,
         "schemeView": 1,
-        "question": "abc",
-        "answers": ["answer1", "answer2", "answer3", "answer4"],
-        "trueanswer": 3
+        "question": "י",
+        "answers": ["вав", "реш", "нун", "йуд"],
+        "trueanswer": 4
       },
       {
         "numExercise": 3,
         "schemeView": 1,
-        "question": "abc",
-        "answers": ["answer1", "answer2", "answer3", "answer4"],
+        "question": "כ",
+        "answers": ["каф", "самех", "мем", "тэт"],
+        "trueanswer": 1
+      },
+      {
+        "numExercise": 4,
+        "schemeView": 1,
+        "question": "ל",
+        "answers": ["бэт", "шин", "нун", "ламед"],
+        "trueanswer": 4
+      },
+      {
+        "numExercise": 5,
+        "schemeView": 1,
+        "question": "ם",
+        "answers": ["самех", "реш", "мем", "йуд"],
         "trueanswer": 3
+      },
+      {
+        "numExercise": 6,
+        "schemeView": 1,
+        "question": "נ",
+        "answers": ["вав", "реш", "нун", "йуд"],
+        "trueanswer": 3
+      },
+      {
+        "numExercise": 7,
+        "schemeView": 1,
+        "question": "ס",
+        "answers": ["самех", "реш", "мем", "йуд"],
+        "trueanswer": 1
+      },
+      {
+        "numExercise": 8,
+        "schemeView": 1,
+        "question": "ע",
+        "answers": ["фей", "айн", "тцади", "куф"],
+        "trueanswer": 2
       }
     ]
   },
@@ -109,99 +130,51 @@
       {
         "numExercise": 1,
         "schemeView": 1,
-        "question": "abc",
-        "answers": ["answer1", "answer2", "answer3", "answer4"],
+        "question": "פ",
+        "answers": ["тет", "реш", "пей", "фей"],
         "trueanswer": 3
       },
       {
         "numExercise": 2,
         "schemeView": 1,
-        "question": "abc",
-        "answers": ["answer1", "answer2", "answer3", "answer4"],
-        "trueanswer": 3
-      },
-      {
-        "numExercise": 3,
-        "schemeView": 1,
-        "question": "abc",
-        "answers": ["answer1", "answer2", "answer3", "answer4"],
-        "trueanswer": 3
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "nameTest": "test4",
-    "test": [
-      {
-        "numExercise": 1,
-        "schemeView": 1,
-        "question": "א",
-        "answers": ["гимель", "далет", "алеф", "вав"],
-        "trueanswer": 3
-      },
-      {
-        "numExercise": 2,
-        "schemeView": 1,
-        "question": "ב",
-        "answers": ["зайн", "йуд", "каф", "бет"],
-        "trueanswer": 4
-      },
-      {
-        "numExercise": 3,
-        "schemeView": 1,
-        "question": "ג",
-        "answers": ["хет", "гимель", "ламед", "мэм"],
+        "question": "ף",
+        "answers": ["пей", "фей", "самех", "мем"],
         "trueanswer": 2
+      },
+      {
+        "numExercise": 3,
+        "schemeView": 1,
+        "question": "צ",
+        "answers": ["фей", "айн", "тцади", "куф"],
+        "trueanswer": 3
       },
       {
         "numExercise": 4,
         "schemeView": 1,
-        "question": "ד",
-        "answers": ["далет", "алеф", "самех", "пей"],
-        "trueanswer": 1
+        "question": "ק",
+        "answers": ["фей", "айн", "тцади", "куф"],
+        "trueanswer": 4
       },
       {
         "numExercise": 5,
         "schemeView": 1,
-        "question": "ה",
-        "answers": ["хет", "hей", "тав", "куф"],
+        "question": "ר",
+        "answers": ["вав", "реш", "нун", "йуд"],
         "trueanswer": 2
       },
       {
         "numExercise": 6,
         "schemeView": 1,
-        "question": "ו",
-        "answers": ["реш", "заин", "нун", "вав"],
-        "trueanswer": 4
+        "question": "ש",
+        "answers": ["бэт", "шин", "нун", "ламед"],
+        "trueanswer": 2
       },
       {
         "numExercise": 7,
         "schemeView": 1,
-        "question": "ז",
-        "answers": ["реш", "заин", "нун", "вав"],
+        "question": "ת",
+        "answers": ["хэт", "тав", "hей", "пей"],
         "trueanswer": 2
-      },
-      {
-        "numExercise": 8,
-        "schemeView": 1,
-        "question": "ח",
-        "answers": ["hей", "тав", "хет", "куф"],
-        "trueanswer": 3
-      },
-      {
-        "numExercise": 9,
-        "schemeView": 1,
-        "question": "ט",
-        "answers": ["хет", "тет", "пэй", "самех"],
-        "trueanswer": 2
-      },
-      {
-        "numExercise": 10,
-        "schemeView": 1,
-        "question": "י",
-        "answers": ["вав", "реш", "нун", "йуд"],
-        "trueanswer": 4
       }
     ]
   }

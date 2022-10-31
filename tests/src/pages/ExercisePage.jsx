@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { countReset } from '../components/testsSlice';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -9,13 +11,16 @@ import Typography from '@mui/material/Typography';
 import Exercise from '../components/exercise';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-import { useSelector } from 'react-redux';
 
 export default function ExercisePage() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
 
   const tests = useSelector((state) => state.tests.tests);
+  const count = useSelector((state) => state.tests.countOfTrueAnswers);
+  const dispatch = useDispatch();
+
+  console.log(count);
 
   const activeTestName = useParams().id;
 
@@ -40,16 +45,19 @@ export default function ExercisePage() {
   };
 
   const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? activeExercises.test.findIndex((step, i) => !(i in completed))
-        : activeStep + 1;
+    const newActiveStep = function () {
+      if (isLastStep() && !allStepsCompleted()) {
+        return activeExercises.test.findIndex((step, i) => !(i in completed));
+      } else if (activeStep + 1 in completed) {
+        return activeExercises.test.findIndex(
+          (step, i) => i > activeStep && !(i in completed)
+        );
+      } else {
+        return activeStep + 1;
+      }
+    };
     setActiveStep(newActiveStep);
   };
-
-  // const handleBack = () => {
-  //   setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  // };
 
   const handleStep = (step) => () => {
     setActiveStep(step);
@@ -59,21 +67,18 @@ export default function ExercisePage() {
     const newCompleted = completed;
     newCompleted[activeStep] = true;
     setCompleted(newCompleted);
-    handleNext();
   };
 
   const handleReset = () => {
     setActiveStep(0);
     setCompleted({});
+    dispatch(countReset());
   };
 
   const stepDisplay = (arr) => {
     return (
       <div key={arr[activeStep].numExercise} className="container">
-        <Exercise
-          // handleComplete={handleComplete}
-          elem={arr[activeStep]}
-        />
+        <Exercise elem={arr[activeStep]} handleComplete={handleComplete} />
       </div>
     );
   };
@@ -87,7 +92,7 @@ export default function ExercisePage() {
             <Stepper nonLinear activeStep={activeStep}>
               {activeExercises.test.map((elem, index) => {
                 return (
-                  <Step key={index} completed={completed[index]}>
+                  <Step key={index} completed={completed[index]} wrapped="true">
                     <StepButton color="inherit" onClick={handleStep(index)}>
                       {elem.numExercise}
                     </StepButton>
@@ -99,8 +104,8 @@ export default function ExercisePage() {
               {allStepsCompleted() ? (
                 <React.Fragment>
                   <Typography sx={{ mt: 2, mb: 1 }}>
-                    All steps completed - you&apos;re finished. You answered {}{' '}
-                    questions correctly
+                    All steps completed - you&apos;re finished. You answered{' '}
+                    {count} questions correctly.
                   </Typography>
                   <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                     <Box sx={{ flex: '1 1 auto' }} />
@@ -112,14 +117,6 @@ export default function ExercisePage() {
                   <Typography sx={{ mt: 2, mb: 1, py: 1 }}></Typography>
                   {stepDisplay(activeExercises.test)}
                   <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                    {/* <Button
-                      color="inherit"
-                      disabled={activeStep === 0}
-                      onClick={handleBack}
-                      sx={{ mr: 1 }}
-                    >
-                      Back
-                    </Button> */}
                     <Box sx={{ flex: '1 1 auto' }} />
                     <Button onClick={handleNext} sx={{ mr: 1 }}>
                       Next

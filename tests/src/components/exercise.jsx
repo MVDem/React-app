@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { countAdd } from '../components/testsSlice';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -13,9 +15,7 @@ export default function Example(props) {
   const [helperText, setHelperText] = React.useState('Select an answer');
   const [activeLable, setActiveLable] = React.useState(false);
   const [activeButton, setActiveButton] = React.useState(true);
-  const [count, setCount] = React.useState(0);
-
-  console.log(count);
+  const dispatch = useDispatch();
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
@@ -30,7 +30,7 @@ export default function Example(props) {
       setHelperText('You answered correctly!');
       setError(false);
       setActiveLable(true);
-      setCount(count + 1);
+      dispatch(countAdd());
     } else if (value) {
       setHelperText('Sorry, wrong answer!');
       setError(true);

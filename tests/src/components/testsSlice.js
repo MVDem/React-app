@@ -7,8 +7,14 @@ const testsSlice = createSlice({
     testsAdd(state, action) {
       state.tests = [...action.payload];
     },
+    countAdd(state, action) {
+      state.countOfTrueAnswers++;
+    },
+    countReset(state, action) {
+      state.countOfTrueAnswers = 0;
+    },
   },
 });
 
-export const { testsAdd } = testsSlice.actions;
+export const { testsAdd, countAdd, countReset } = testsSlice.actions;
 export default testsSlice.reducer;
