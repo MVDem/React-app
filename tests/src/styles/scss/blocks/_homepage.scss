@@ -1,0 +1,16 @@
+.home {
+  &__wrapper {
+    width: 80vw;
+    height: 70vh;
+    background-color: $white-color;
+    border-radius: 20px;
+    padding: 30px 30px;
+    overflow: auto;
+    margin-top: 50px;
+  }
+  &__title {
+    color: red;
+    flex-grow: 1;
+    margin-bottom: 20px;
+  }
+}

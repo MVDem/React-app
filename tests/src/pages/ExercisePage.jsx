@@ -2,15 +2,11 @@ import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { countReset } from '../components/testsSlice';
-import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Exercise from '../components/exercise';
-import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 
 export default function ExercisePage() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -85,49 +81,40 @@ export default function ExercisePage() {
 
   return (
     <>
-      <CssBaseline />
-      <Container fixed>
-        <Box sx={{ bgcolor: '#e3f2fd', height: '90vh' }}>
-          <Box sx={{ width: '100%', pt: '50px' }}>
-            <Stepper nonLinear activeStep={activeStep}>
-              {activeExercises.test.map((elem, index) => {
-                return (
-                  <Step key={index} completed={completed[index]} wrapped="true">
-                    <StepButton color="inherit" onClick={handleStep(index)}>
-                      {elem.numExercise}
-                    </StepButton>
-                  </Step>
-                );
-              })}
-            </Stepper>
-            <div>
-              {allStepsCompleted() ? (
-                <React.Fragment>
-                  <Typography sx={{ mt: 2, mb: 1 }}>
-                    All steps completed - you&apos;re finished. You answered{' '}
-                    {count} questions correctly.
-                  </Typography>
-                  <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                    <Box sx={{ flex: '1 1 auto' }} />
-                    <Button onClick={handleReset}>Reset</Button>
-                  </Box>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  <Typography sx={{ mt: 2, mb: 1, py: 1 }}></Typography>
-                  {stepDisplay(activeExercises.test)}
-                  <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                    <Box sx={{ flex: '1 1 auto' }} />
-                    <Button onClick={handleNext} sx={{ mr: 1 }}>
-                      Next
-                    </Button>
-                  </Box>
-                </React.Fragment>
-              )}
-            </div>
-          </Box>
-        </Box>
-      </Container>
+      <section className="exercise">
+        <Stepper nonLinear activeStep={activeStep}>
+          {activeExercises.test.map((elem, index) => {
+            return (
+              <Step key={index} completed={completed[index]} wrapped="true">
+                <StepButton
+                  color="inherit"
+                  onClick={handleStep(index)}
+                ></StepButton>
+              </Step>
+            );
+          })}
+        </Stepper>
+        <div>
+          {allStepsCompleted() ? (
+            <React.Fragment>
+              <p className="exercise__text">
+                All steps completed - you&apos;re finished. You answered {count}{' '}
+                questions correctly.
+              </p>
+              <Button onClick={handleReset}>Reset</Button>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <div className="exercise__answer">
+                {stepDisplay(activeExercises.test)}
+              </div>
+              <Button onClick={handleNext} sx={{ mr: 1 }}>
+                Next
+              </Button>
+            </React.Fragment>
+          )}
+        </div>
+      </section>
     </>
   );
 }

@@ -1,20 +1,18 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 
 export default function MainPage() {
   return (
     <>
-      <CssBaseline />
-      <Container fixed>
-        <Box sx={{ bgcolor: '#e3f2fd', height: '90vh' }}>
-          <h2 className="homePageError">
+      <section className="home">
+        <div className="home__wrapper">
+          <h2 className="home__title">
             Приложение находится в состоянии разработки.
           </h2>
-          <p>Вы можете перейти на вкладку "Tests"</p>
-        </Box>
-      </Container>
+          <div className="home__subtitle">
+            Вы можете перейти на вкладку "Tests"
+          </div>
+        </div>
+      </section>
     </>
   );
 }

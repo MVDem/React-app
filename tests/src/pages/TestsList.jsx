@@ -2,11 +2,6 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { testsAdd } from '../components/testsSlice';
 import { Link } from 'react-router-dom';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 
 export default function TestsList() {
   const tests = useSelector((state) => state.tests.tests);
@@ -29,43 +24,35 @@ export default function TestsList() {
 
   return (
     <>
-      <CssBaseline />
-      <Container fixed>
-        <Box
-          sx={{
-            bgcolor: '#e3f2fd',
-            height: '90vh',
-            display: 'flex',
-            flexDirection: 'column',
-            flexWrap: 'wrap',
-            p: 3,
-          }}
-        >
-          <div className="titleTestList">
-            <Typography sx={{ mt: 2, mb: 1, mr: 2 }}>Выберите тест:</Typography>
-          </div>
+      <section className="tests">
+        <h2>Выберите тест:</h2>
+        <div className="tests__list">
           <>
             {tests.map((test) => (
-              <div key={test.id}>
-                <Link
-                  style={{ textDecoration: 'none', mr: 1 }}
-                  to={`/tests/${test.nameTest}`}
-                >
-                  <Button variant="outlined">
-                    <Typography
-                      variant="h7"
-                      component="div"
-                      sx={{ flexGrow: 1 }}
-                    >
-                      {test.nameTest}
-                    </Typography>
-                  </Button>
+              <div key={test.id} className="tests__item">
+                <img
+                  src="./img/alef.jpg"
+                  width="150"
+                  height="150"
+                  alt="alef"
+                  className="tests__img"
+                />
+                <p className="tests__description">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Harum voluptates, et voluptate est eius similique hic soluta
+                  reprehenderit repellendus esse?
+                </p>
+
+                <Link to={`/tests/${test.nameTest}`}>
+                  <button type="button" className="tests__button">
+                    {test.nameTest}
+                  </button>
                 </Link>
               </div>
             ))}
           </>
-        </Box>
-      </Container>
+        </div>
+      </section>
     </>
   );
 }

@@ -1,0 +1,22 @@
+.exercise {
+  width: 96vw;
+  height: 70vh;
+  background-color: $white-color;
+  border-radius: 20px;
+  padding: 30px 0;
+  overflow: auto;
+  margin-top: 50px;
+
+  &__text {
+    margin: 20px 10px;
+    @include font(16px, 19px, 300);
+  }
+
+  &__answer {
+    margin: 30px auto;
+    width: 90%;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid black;
+  }
+}

@@ -4,7 +4,7 @@ import ExercisePage from './pages/ExercisePage';
 import Layout from './pages/Layout';
 import HomePage from './pages/HomePage';
 import TestsList from './pages/TestsList';
-import './styles/style.css';
+import './styles/scss/style.css';
 
 function App() {
   return (

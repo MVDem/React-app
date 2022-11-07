@@ -1,0 +1,116 @@
+.header {
+  position: fixed;
+  width: 100%;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+
+  &__wrapper {
+    min-height: 100px;
+    max-width: 1920px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      'appbar  appbar'
+      '...  sidebar';
+  }
+
+  &__appbar {
+    grid-area: appbar;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 60%,
+      rgba(0, 212, 255, 1) 100%
+    );
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    opacity: 0.9;
+  }
+
+  &__controls {
+    margin: 0 20px;
+  }
+
+  &__btn {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $white-color;
+    margin-right: 10px;
+    @include font(20px, 24px, 600);
+  }
+
+  &__sidebar {
+    display: none;
+    grid-area: sidebar;
+    justify-self: end;
+    background-color: #00c6ff;
+    width: 200px;
+    height: 400px;
+    border-radius: 20px;
+  }
+}
+
+.main {
+  margin: 0 auto;
+  max-width: 1920px;
+  min-height: 100vh;
+  background: rgb(0, 198, 255);
+  background: linear-gradient(
+    98deg,
+    rgba(0, 198, 255, 1) 0%,
+    rgba(9, 9, 121, 0) 51%,
+    rgba(0, 198, 255, 1) 97%
+  );
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+
+  &__wrapper {
+    min-height: 50px;
+    max-width: 1920px;
+    margin: 0 auto;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 60%,
+      rgba(0, 212, 255, 1) 100%
+    );
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__copy {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $white-color;
+    margin-left: 20px;
+    @include font(14px, 18px, 400);
+  }
+}

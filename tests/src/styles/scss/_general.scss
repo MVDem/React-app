@@ -1,0 +1,35 @@
+.header {
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+}
+
+.container {
+  max-width: 72%;
+  margin: 0 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+@media (max-width: $max-tablet-width) {
+  .container {
+    max-width: 96%;
+  }
+}
+
+@media (max-width: $max-mobile-width) {
+  .container {
+    max-width: 96%;
+  }
+}
