@@ -295,6 +295,14 @@ table {
   padding: 30px 0;
   overflow: auto;
   margin-top: 50px;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: minmax(50px, auto) 1fr;
+}
+@media (max-width: 780px) {
+  .exercise {
+    grid-template-columns: minmax(50px, auto) 1fr;
+  }
 }
 .exercise__text {
   margin: 20px 10px;
@@ -309,4 +317,122 @@ table {
   align-items: center;
   border-radius: 10px;
   border: 1px solid black;
+}
+
+.Progress {
+  max-width: 900px;
+  max-height: 200px;
+  box-shadow: 0, 15px, 25px, rgba(0, 0, 0, 0.1);
+  color: #333;
+  list-style-type: none;
+  border-radius: 10px;
+  display: flex;
+  padding: 20px, 10px;
+  position: relative;
+  z-index: 10;
+}
+@media (max-width: 780px) {
+  .Progress {
+    flex-direction: column;
+  }
+}
+.Progress__item {
+  padding: 0 20px;
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  min-width: 50px;
+  position: relative;
+}
+@media (max-width: 780px) {
+  .Progress__item {
+    margin-bottom: 20px;
+  }
+}
+.Progress__item + .Progress__item:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-100%, -50%);
+  background-color: #6f6d7b;
+  width: 100%;
+  height: 2px;
+  z-index: -10;
+}
+@media (max-width: 780px) {
+  .Progress__item + .Progress__item:after {
+    height: 140%;
+    width: 2px;
+    transform: translate(-50%, -100%);
+  }
+}
+.Progress__count {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 600;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  color: transparent;
+}
+.Progress__count:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #6f6d7b;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: -10;
+}
+.Progress__lable {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+  opacity: 0.5;
+  display: none;
+}
+@media (max-width: 1599px) {
+  .Progress__lable {
+    display: none;
+  }
+}
+.Progress__item-active .Progress__count:after {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #6f6d7b;
+}
+.Progress__item-active .Progress__count {
+  color: #21d4fd;
+}
+.Progress__item-completed > .Progress__count {
+  width: 40px;
+  height: 40px;
+  background-color: #00ff2a;
+}
+.Progress__item-completed > .Progress__count:before {
+  content: "";
+  height: 10px;
+  width: 20px;
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -60%) rotate(-45deg);
+  transform-origin: center center;
+}
+.Progress__item-completed > .Progress__count:after {
+  background-color: #00ff2a;
 }/*# sourceMappingURL=style.css.map */

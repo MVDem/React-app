@@ -6,6 +6,12 @@
   padding: 30px 0;
   overflow: auto;
   margin-top: 50px;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: minmax(50px, auto) 1fr;
+  @include mobile {
+    grid-template-columns: minmax(50px, auto) 1fr;
+  }
 
   &__text {
     margin: 20px 10px;

@@ -2,11 +2,9 @@ import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { countReset } from '../components/testsSlice';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import Exercise from '../components/exercise';
+import ProgressBar from '../components/ProgressBar';
 
 export default function ExercisePage() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -15,8 +13,6 @@ export default function ExercisePage() {
   const tests = useSelector((state) => state.tests.tests);
   const count = useSelector((state) => state.tests.countOfTrueAnswers);
   const dispatch = useDispatch();
-
-  console.log(count);
 
   const activeTestName = useParams().id;
 
@@ -82,18 +78,12 @@ export default function ExercisePage() {
   return (
     <>
       <section className="exercise">
-        <Stepper nonLinear activeStep={activeStep}>
-          {activeExercises.test.map((elem, index) => {
-            return (
-              <Step key={index} completed={completed[index]} wrapped="true">
-                <StepButton
-                  color="inherit"
-                  onClick={handleStep(index)}
-                ></StepButton>
-              </Step>
-            );
-          })}
-        </Stepper>
+        <ProgressBar
+          activeExercises={activeExercises.test}
+          activeStep={activeStep}
+          completed={completed}
+          handleStep={handleStep}
+        />
         <div>
           {allStepsCompleted() ? (
             <React.Fragment>

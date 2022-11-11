@@ -28,7 +28,7 @@ export default function Layout() {
       <footer className="footer">
         <div className="footer__wrapper">
           <div className="footer__copy">
-            <p>© 2021 MVDem.</p>
+            <p>© 2022 MVDem.</p>
           </div>
         </div>
       </footer>
