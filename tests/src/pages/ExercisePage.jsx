@@ -9,6 +9,7 @@ import ProgressBar from '../components/ProgressBar';
 export default function ExercisePage() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
+  const [correctly, setCorrectly] = React.useState();
 
   const tests = useSelector((state) => state.tests.tests);
   const count = useSelector((state) => state.tests.countOfTrueAnswers);
@@ -49,6 +50,8 @@ export default function ExercisePage() {
       }
     };
     setActiveStep(newActiveStep);
+    handleComplete();
+    setCorrectly();
   };
 
   const handleStep = (step) => () => {
@@ -57,8 +60,11 @@ export default function ExercisePage() {
 
   const handleComplete = () => {
     const newCompleted = completed;
-    newCompleted[activeStep] = true;
+    if (correctly !== undefined) {
+      newCompleted[activeStep] = correctly;
+    }
     setCompleted(newCompleted);
+    console.log(completed);
   };
 
   const handleReset = () => {
@@ -70,7 +76,11 @@ export default function ExercisePage() {
   const stepDisplay = (arr) => {
     return (
       <div key={arr[activeStep].numExercise} className="container">
-        <Exercise elem={arr[activeStep]} handleComplete={handleComplete} />
+        <Exercise
+          elem={arr[activeStep]}
+          handleComplete={handleComplete}
+          setCorrectly={setCorrectly}
+        />
       </div>
     );
   };

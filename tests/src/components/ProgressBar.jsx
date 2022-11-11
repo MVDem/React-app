@@ -8,8 +8,10 @@ export default function ProgressBar(props) {
           const classNameButton = () => {
             if (props.activeStep === index) {
               return 'Progress__item Progress__item-active';
-            } else if (props.completed[index]) {
-              return 'Progress__item Progress__item-completed';
+            } else if (props.completed[index] === true) {
+              return 'Progress__item Progress__item-completedTrue';
+            } else if (props.completed[index] === false) {
+              return 'Progress__item Progress__item-completedFalse';
             } else {
               return 'Progress__item';
             }

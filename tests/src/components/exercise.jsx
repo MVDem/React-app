@@ -10,7 +10,7 @@ import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 
 export default function Example(props) {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState(' ');
   const [error, setError] = React.useState(false);
   const [helperText, setHelperText] = React.useState('Select an answer');
   const [activeLable, setActiveLable] = React.useState(false);
@@ -31,10 +31,15 @@ export default function Example(props) {
       setError(false);
       setActiveLable(true);
       dispatch(countAdd());
+      props.setCorrectly(true);
     } else if (value) {
-      setHelperText('Sorry, wrong answer!');
+      setHelperText(
+        'Sorry, wrong answer! True answer: ' +
+          props.elem.answers[props.elem.trueanswer - 1]
+      );
       setError(true);
       setActiveLable(true);
+      props.setCorrectly(false);
     } else {
       setHelperText('Please select an option.');
       setError(true);
@@ -70,7 +75,7 @@ export default function Example(props) {
           type="submit"
           variant="outlined"
           disabled={activeButton}
-          onClick={props.handleComplete}
+          //onClick={props.handleComplete}
         >
           Check Answer
         </Button>

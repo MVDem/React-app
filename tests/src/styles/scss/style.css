@@ -416,12 +416,12 @@ table {
 .Progress__item-active .Progress__count {
   color: #21d4fd;
 }
-.Progress__item-completed > .Progress__count {
+.Progress__item-completedTrue > .Progress__count {
   width: 40px;
   height: 40px;
   background-color: #00ff2a;
 }
-.Progress__item-completed > .Progress__count:before {
+.Progress__item-completedTrue > .Progress__count:before {
   content: "";
   height: 10px;
   width: 20px;
@@ -433,6 +433,26 @@ table {
   transform: translate(-50%, -60%) rotate(-45deg);
   transform-origin: center center;
 }
-.Progress__item-completed > .Progress__count:after {
+.Progress__item-completedTrue > .Progress__count:after {
   background-color: #00ff2a;
+}
+.Progress__item-completedFalse > .Progress__count {
+  width: 40px;
+  height: 40px;
+  background-color: red;
+}
+.Progress__item-completedFalse > .Progress__count:before {
+  content: "";
+  height: 10px;
+  width: 20px;
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -60%) rotate(-45deg);
+  transform-origin: center center;
+}
+.Progress__item-completedFalse > .Progress__count:after {
+  background-color: red;
 }/*# sourceMappingURL=style.css.map */
