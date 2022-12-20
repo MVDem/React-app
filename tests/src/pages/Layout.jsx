@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { useAuth } from '../components/hooks/use-auth';
+import { useDispatch } from 'react-redux';
+import { removeUser } from '../components/slices/userSlice';
 
 export default function Layout() {
+  const dispatch = useDispatch();
+  const { isAuth, email } = useAuth();
+
   return (
     <>
       <header className="header">
@@ -11,12 +17,30 @@ export default function Layout() {
               <NavLink to="/" className="header__btn">
                 home
               </NavLink>
-              <NavLink to="/tests" className="header__btn">
-                Tests
-              </NavLink>
+              {isAuth && (
+                <NavLink to="/tests" className="header__btn">
+                  Tests
+                </NavLink>
+              )}
             </div>
             <div className="header__controls">
-              {/* <button className="header__btn">Login</button> */}
+              {isAuth ? (
+                <div>
+                  <button className="header__person">{email}</button>
+                  <div className="header__dropdown">
+                    <button
+                      className="header__Personbtn"
+                      onClick={() => dispatch(removeUser())}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <NavLink to="/login" className="header__btn">
+                  Login
+                </NavLink>
+              )}
             </div>
           </div>
           <div className="header__sidebar"></div>

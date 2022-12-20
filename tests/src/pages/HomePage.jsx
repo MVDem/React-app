@@ -9,7 +9,7 @@ export default function MainPage() {
             Приложение находится в состоянии разработки.
           </h2>
           <div className="home__subtitle">
-            Вы можете перейти на вкладку "Tests"
+            Вы можете перейти на вкладку "Tests" после авторизации.
           </div>
         </div>
       </section>

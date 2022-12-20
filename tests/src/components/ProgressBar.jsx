@@ -21,7 +21,7 @@ export default function ProgressBar(props) {
             <li
               key={index}
               className={classNameButton()}
-              onClick={props.handleStep(index)}
+              /* onClick={props.handleStep(index)} */
             >
               <span className="Progress__count">{index + 1}</span>
               <span className="Progress__lable">{index + 1}</span>

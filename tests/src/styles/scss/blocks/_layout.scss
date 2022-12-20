@@ -24,13 +24,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgb(2, 0, 36);
-    background: linear-gradient(
-      90deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgba(9, 9, 121, 1) 60%,
-      rgba(0, 212, 255, 1) 100%
-    );
+    background: $dark-pink;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     opacity: 0.9;
@@ -46,6 +40,39 @@
     color: $white-color;
     margin-right: 10px;
     @include font(20px, 24px, 600);
+  }
+
+  &__person {
+    text-decoration: none;
+    color: $white-color;
+    background-color: inherit;
+    border: none;
+    @include font(20px, 24px, 600);
+  }
+
+  &__dropdown {
+    width: 100px;
+    padding-top: 10px;
+    background-color: $dark-pink;
+    position: absolute;
+    top: 62px;
+    right: 27px;
+    display: flex;
+    justify-content: flex-start;
+    display: none;
+  }
+
+  &__controls:hover &__dropdown {
+    display: block;
+    color: red;
+  }
+
+  &__Personbtn {
+    width: 100%;
+    color: $white-color;
+    background-color: inherit;
+    border: none;
+    @include font(16px, 19px, 400);
   }
 
   &__sidebar {
@@ -64,14 +91,8 @@
   max-width: 1920px;
   min-height: 100vh;
   background: rgb(0, 198, 255);
-  background: linear-gradient(
-    98deg,
-    rgba(0, 198, 255, 1) 0%,
-    rgba(9, 9, 121, 0) 51%,
-    rgba(0, 198, 255, 1) 97%
-  );
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+  background-image: url('./../../../public/img/back1.jpg');
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,13 +112,7 @@
     min-height: 50px;
     max-width: 1920px;
     margin: 0 auto;
-    background: rgb(2, 0, 36);
-    background: linear-gradient(
-      90deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgba(9, 9, 121, 1) 60%,
-      rgba(0, 212, 255, 1) 100%
-    );
+    background: $dark-pink;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     opacity: 0.9;

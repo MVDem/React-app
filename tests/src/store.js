@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import testsReduser from './components/testsSlice';
+import testsReducer from './components/slices/testsSlice';
+import userReducer from './components/slices/userSlice';
+
 export default configureStore({
   reducer: {
-    tests: testsReduser,
+    tests: testsReducer,
+    user: userReducer,
   },
 });

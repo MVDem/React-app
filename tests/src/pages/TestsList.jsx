@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { testsAdd } from '../components/testsSlice';
+import { testsAdd } from '../components/slices/testsSlice';
 import { Link } from 'react-router-dom';
 
 export default function TestsList() {
@@ -25,7 +25,7 @@ export default function TestsList() {
   return (
     <>
       <section className="tests">
-        <h2>Выберите тест:</h2>
+        <h2 className="tests__title">Выберите тест:</h2>
         <div className="tests__list">
           <>
             {tests.map((test) => (

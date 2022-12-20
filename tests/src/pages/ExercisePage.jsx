@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { countReset } from '../components/testsSlice';
+import { countReset } from '../components/slices/testsSlice';
 import Button from '@mui/material/Button';
 import Exercise from '../components/exercise';
 import ProgressBar from '../components/ProgressBar';
