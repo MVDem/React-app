@@ -5,7 +5,7 @@ const FormAuth = ({ title, handleClickAuth }) => {
   const [pass, setPass] = useState('');
 
   return (
-    <form className="formAuth">
+    <div className="formAuth">
       <input
         className="formAuth__textBox"
         type="email"
@@ -26,7 +26,7 @@ const FormAuth = ({ title, handleClickAuth }) => {
       >
         {title}
       </button>
-    </form>
+    </div>
   );
 };
 
