@@ -14,12 +14,18 @@ const FormAuth = ({ title, handleClickAuth }) => {
         placeholder="email"
       />
       <input
+        className="formAuth__textBox"
         type="password"
         value={pass}
         onChange={(e) => setPass(e.target.value)}
         placeholder="password"
       ></input>
-      <button onClick={() => handleClickAuth(email, pass)}>{title}</button>
+      <button
+        className="formAuth__btn"
+        onClick={() => handleClickAuth(email, pass)}
+      >
+        {title}
+      </button>
     </form>
   );
 };

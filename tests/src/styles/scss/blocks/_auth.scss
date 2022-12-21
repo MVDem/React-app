@@ -1,0 +1,12 @@
+.auth {
+  min-width: 260px;
+  min-height: 200px;
+  background-color: $white-color;
+  border-radius: 20px;
+  padding: 20px 10px;
+  opacity: 0.7;
+
+  &__title {
+    @include font(20px, 24px, 600);
+  }
+}
