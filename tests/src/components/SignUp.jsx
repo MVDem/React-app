@@ -25,7 +25,7 @@ const SignIn = () => {
       .catch(console.error);
   };
 
-  return <FormAuth title="Register" handleClickAuth={handleRegister} />;
+  return <FormAuth title="Sign up" handleClickAuth={handleRegister} />;
 };
 
 export default SignIn;

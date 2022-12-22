@@ -7,11 +7,18 @@ export default function RegisterPage() {
     <>
       <section className="auth">
         <div className="auth__wrapper">
-          <h2 className="auth__title">Register</h2>
-          <SignIn />
-          <p>
-            Already have an account? <Link to="/login">Sign in</Link>
-          </p>
+          <div className="auth__main">
+            <h2 className="auth__title">Register</h2>
+            <SignIn />
+            <div className="auth__links">
+              <Link className="auth__link" to="#">
+                Forgot password
+              </Link>
+              <Link className="auth__link" to="/login">
+                Sign in
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </>

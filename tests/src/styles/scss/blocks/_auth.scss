@@ -1,12 +1,78 @@
 .auth {
-  min-width: 260px;
-  min-height: 200px;
-  background-color: $white-color;
-  border-radius: 20px;
-  padding: 20px 10px;
-  opacity: 0.7;
+  &__wrapper {
+    position: relative;
+    width: 380px;
+    height: 420px;
+    background-color: $dark-pink;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  &__wrapper::before {
+    content: ' ';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, $white-color, $white-color);
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+  }
+
+  &__wrapper::after {
+    content: ' ';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, $white-color, $white-color);
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+  }
+
+  @keyframes animate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  &__main {
+    position: absolute;
+    inset: 2px;
+    border-radius: 8px;
+    background: $dark-pink;
+    z-index: 10;
+    padding: 50px 40px;
+  }
 
   &__title {
+    color: $white-color;
+    font-family: Roboto;
     @include font(20px, 24px, 600);
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+  }
+
+  &__link {
+    margin: 10px 0;
+    font-family: Roboto;
+    font-size: 0.75em;
+    color: $grey-color;
+    text-decoration: none;
+  }
+  &__link:hover {
+    color: $white-color;
   }
 }
