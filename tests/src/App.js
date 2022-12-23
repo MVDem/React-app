@@ -4,7 +4,8 @@ import ExercisePage from './pages/ExercisePage';
 import Layout from './pages/Layout';
 import HomePage from './pages/HomePage';
 import TestsList from './pages/TestsList';
-import Login from './pages/LoginPage';
+import SingIn from './pages/SignInPage';
+import SignUp from './pages/SignUpPage';
 import Register from './pages/RegisterPage';
 import './styles/scss/style.css';
 
@@ -16,8 +17,9 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="tests" element={<TestsList />} />
           <Route path="tests/:id" element={<ExercisePage />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+          <Route path="signIn" element={<SingIn />} />
+          <Route path="signUp" element={<SignUp />} />
+          <Route path="signUp/register" element={<Register />} />
         </Route>
       </Routes>
     </>

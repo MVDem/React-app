@@ -1,19 +1,19 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setUser } from './slices/userSlice';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
-const SignUp = () => {
+const SignIn = () => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSignUp = (email, password) => {
+  const handleLogin = (email, password) => {
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         console.log(user);
         dispatch(
@@ -23,7 +23,7 @@ const SignUp = () => {
             token: user.accessToken,
           })
         );
-        navigate('/signUp/register');
+        navigate('/');
       })
       .catch(console.error);
   };
@@ -52,12 +52,12 @@ const SignUp = () => {
       </div>
       <button
         className="formAuth__btn"
-        onClick={() => handleSignUp(email, pass)}
+        onClick={() => handleLogin(email, pass)}
       >
-        Sign up
+        Sign in
       </button>
     </div>
   );
 };
 
-export default SignUp;
+export default SignIn;

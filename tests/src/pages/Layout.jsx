@@ -29,7 +29,7 @@ export default function Layout() {
                   <button className="header__person">{email}</button>
                   <div className="header__dropdown">
                     <button
-                      className="header__Personbtn"
+                      className="header__personbtn"
                       onClick={() => dispatch(removeUser())}
                     >
                       Logout
@@ -37,7 +37,7 @@ export default function Layout() {
                   </div>
                 </div>
               ) : (
-                <NavLink to="/login" className="header__btn">
+                <NavLink to="/signIn" className="header__btn">
                   Login
                 </NavLink>
               )}
