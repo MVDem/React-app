@@ -1,9 +1,6 @@
 import * as React from 'react';
-import { useAuth } from '../components/hooks/use-auth';
 
 export default function MainPage() {
-  const user = useAuth();
-  console.log(user);
   return (
     <>
       <section className="home">

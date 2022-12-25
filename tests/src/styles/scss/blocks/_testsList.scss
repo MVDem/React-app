@@ -2,7 +2,7 @@
   width: 80vw;
   height: 70vh;
   //background-color: $white-color;
-  opacity: 0.7;
+  //opacity: 0.7;
   border-radius: 20px;
   padding: 30px 30px;
   overflow: auto;
@@ -10,42 +10,66 @@
 
   &__title {
     background-color: $white-color;
-    border-radius: 20px;
+    border-radius: 8px;
     padding: 10px 20px;
   }
 
   &__list {
-    margin-top: 20px;
+    margin-top: 50px;
     display: grid;
     gap: 10px 15px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     grid-auto-rows: minmax(200px, auto);
+    z-index: 0;
   }
 
   &__item {
-    height: 200px;
+    position: relative;
+    height: 150px;
     background-color: $white-color;
-    border-radius: 10px;
-    -webkit-box-shadow: 5px 4px 25px 0px rgba(0, 0, 0, 0.84);
-    box-shadow: 5px 4px 25px 0px rgba(0, 0, 0, 0.84);
-    //background-color: #00c6ff;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 0.5s;
+    z-index: 0;
   }
 
   &__img {
-    margin-top: 20px;
+    position: absolute;
+    transform: translateY(-30px);
+    width: 150px;
+    height: 150px;
     background-color: transparent;
-    border-radius: 7px;
+    border-radius: 8px;
+  }
+
+  &__drop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  &__subtitle {
+    margin-top: 123px;
+    text-transform: uppercase;
+    @include font(20px, 24px, 600);
+    font-family: roboto;
+    color: $dark-pink;
   }
 
   &__description {
-    display: none;
-    margin: 20px;
+    margin: 15px;
     text-align: center;
     @include font(16px, 19px, 300);
     color: $dark-pink;
+    transition: 0.5s;
+    transform: translateY(150px);
   }
 
   &__button {
@@ -54,32 +78,26 @@
     height: 30px;
     border-radius: 10px;
     border: none;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    color: $white-color;
+    text-decoration: none;
     text-transform: uppercase;
     @include font(13px, 16px, 300);
-    background-color: $light-blue;
+    background-color: $dark-pink;
+    transform: translateY(150px);
   }
 
   &__item:hover {
-    animation-name: itemHover;
-    animation-duration: 0.2s;
-    animation-fill-mode: forwards;
+    height: 300px;
+    z-index: 10;
   }
 
   &__item:hover &__description {
-    display: block;
+    transform: translateY(0px);
   }
 
   &__item:hover &__button {
     display: block;
-  }
-
-  @keyframes itemHover {
-    from {
-      height: 200px;
-    }
-    to {
-      height: 100%;
-    }
+    transform: translateY(0px);
   }
 }

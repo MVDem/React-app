@@ -1,14 +1,24 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../components/hooks/use-auth';
 import { setUserPerson } from './slices/userSlice';
+import { setData } from '../firebase';
 
 const Register = () => {
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
+  const { id, email } = useAuth();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const userData = {
+    userEmail: email,
+    userId: id,
+    userName: name,
+    userLastName: lastName,
+  };
 
   const handleRegister = (name, lastName) => {
     dispatch(
@@ -17,7 +27,8 @@ const Register = () => {
         lastName: lastName,
       })
     );
-    navigate('/');
+    setData(`users/${id}`, userData);
+    navigate('/tests');
   };
 
   return (

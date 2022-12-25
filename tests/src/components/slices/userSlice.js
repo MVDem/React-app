@@ -21,6 +21,7 @@ const userSlice = createSlice({
       state.name = action.payload.name;
       state.lastName = action.payload.lastName;
     },
+
     removeUser(state) {
       state.email = null;
       state.token = null;

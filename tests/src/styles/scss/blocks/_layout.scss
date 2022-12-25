@@ -60,18 +60,18 @@
     background-color: $dark-pink;
     position: absolute;
     top: 62px;
-    right: 27px;
+    right: 7px;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     visibility: hidden;
     transition: 0.5s;
-    transform: translateY(30px);
+    transform: translateX(150px);
   }
 
   &__controls:hover &__dropdown {
     visibility: visible;
-    transform: translateY(0px);
+    transform: translateX(0px);
   }
 
   &__personbtn {
@@ -126,8 +126,8 @@
     max-width: 1920px;
     margin: 0 auto;
     background: $dark-pink;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
     opacity: 0.9;
     display: flex;
     align-items: center;

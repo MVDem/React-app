@@ -37,17 +37,20 @@ export default function TestsList() {
                   alt="alef"
                   className="tests__img"
                 />
-                <p className="tests__description">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Harum voluptates, et voluptate est eius similique hic soluta
-                  reprehenderit repellendus esse?
-                </p>
+                <h3 className="tests__subtitle">{test.nameTest}</h3>
+                <div className="tests__drop">
+                  <p className="tests__description">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Harum voluptates, et voluptate est eius similique hic soluta
+                    reprehenderit repellendus esse?
+                  </p>
 
-                <Link to={`/tests/${test.nameTest}`}>
-                  <button type="button" className="tests__button">
-                    {test.nameTest}
-                  </button>
-                </Link>
+                  <Link to={`/tests/${test.nameTest}`}>
+                    <button type="button" className="tests__button">
+                      Пройти тест
+                    </button>
+                  </Link>
+                </div>
               </div>
             ))}
           </>

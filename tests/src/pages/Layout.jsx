@@ -6,7 +6,7 @@ import { removeUser } from '../components/slices/userSlice';
 
 export default function Layout() {
   const dispatch = useDispatch();
-  const { isAuth, email } = useAuth();
+  const { isAuth, name } = useAuth();
 
   return (
     <>
@@ -26,7 +26,7 @@ export default function Layout() {
             <div className="header__controls">
               {isAuth ? (
                 <div>
-                  <button className="header__person">{email}</button>
+                  <button className="header__person">{name}</button>
                   <div className="header__dropdown">
                     <button
                       className="header__personbtn"

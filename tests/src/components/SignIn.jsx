@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setUser } from './slices/userSlice';
+import { setUser, setUserPerson } from './slices/userSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getData } from '../firebase';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -11,11 +12,19 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const setUserData = (data) => {
+    dispatch(
+      setUserPerson({
+        name: data.userName,
+        lastName: data.userLastName,
+      })
+    );
+  };
+
   const handleLogin = (email, password) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
-        console.log(user);
         dispatch(
           setUser({
             email: user.email,
@@ -23,9 +32,12 @@ const SignIn = () => {
             token: user.accessToken,
           })
         );
-        navigate('/');
+        getData(`users/${user.uid}`, setUserData);
+        navigate('/tests');
       })
-      .catch(console.error);
+      .catch((error) => {
+        alert(error);
+      });
   };
 
   return (
