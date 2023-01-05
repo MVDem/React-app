@@ -6,6 +6,7 @@ export default function ProgressBar(props) {
       <ul className="Progress">
         {props.activeExercises.map((elem, index) => {
           const classNameButton = () => {
+            console.log(props.activeStep);
             if (props.activeStep === index) {
               return 'Progress__item Progress__item-active';
             } else if (props.completed[index] === true) {

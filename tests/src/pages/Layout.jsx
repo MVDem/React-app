@@ -1,12 +1,18 @@
 import * as React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/hooks/use-auth';
 import { useDispatch } from 'react-redux';
 import { removeUser } from '../components/slices/userSlice';
 
 export default function Layout() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isAuth, name } = useAuth();
+
+  const logaut = () => {
+    dispatch(removeUser());
+    navigate('/');
+  };
 
   return (
     <>
@@ -30,7 +36,7 @@ export default function Layout() {
                   <div className="header__dropdown">
                     <button
                       className="header__personbtn"
-                      onClick={() => dispatch(removeUser())}
+                      onClick={() => logaut()}
                     >
                       Logout
                     </button>

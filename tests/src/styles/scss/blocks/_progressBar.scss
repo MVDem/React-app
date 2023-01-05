@@ -1,6 +1,5 @@
 .Progress {
-  max-width: 900px;
-  max-height: 200px;
+  width: 100%;
   box-shadow: 0, 15px, 25px, rgba(0, 0, 0, 0.1);
   color: #333;
   list-style-type: none;
@@ -8,9 +7,12 @@
   display: flex;
   padding: 20px, 10px;
   position: relative;
+  justify-content: space-around;
   z-index: 10;
   @include mobile {
     flex-direction: column;
+    height: 100%;
+    align-items: center;
   }
 
   &__item {

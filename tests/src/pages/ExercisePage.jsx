@@ -3,14 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { countReset } from '../components/slices/testsSlice';
 import Button from '@mui/material/Button';
-import Exercise from '../components/exercise';
 import ProgressBar from '../components/ProgressBar';
+import Scheme1 from '../components/Scheme1';
 
 export default function ExercisePage() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
   const [correctly, setCorrectly] = React.useState();
-
   const tests = useSelector((state) => state.tests.tests);
   const count = useSelector((state) => state.tests.countOfTrueAnswers);
   const dispatch = useDispatch();
@@ -64,7 +63,6 @@ export default function ExercisePage() {
       newCompleted[activeStep] = correctly;
     }
     setCompleted(newCompleted);
-    console.log(completed);
   };
 
   const handleReset = () => {
@@ -76,7 +74,7 @@ export default function ExercisePage() {
   const stepDisplay = (arr) => {
     return (
       <div key={arr[activeStep].numExercise} className="container">
-        <Exercise
+        <Scheme1
           elem={arr[activeStep]}
           handleComplete={handleComplete}
           setCorrectly={setCorrectly}
