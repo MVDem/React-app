@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setUser, setUserPerson } from './slices/userSlice';
+import { setUser } from './slices/userSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { getData } from '../firebase';
 
@@ -14,7 +14,7 @@ const SignIn = () => {
 
   const setUserData = (data) => {
     dispatch(
-      setUserPerson({
+      setUser({
         name: data.userName,
         lastName: data.userLastName,
       })
@@ -28,7 +28,7 @@ const SignIn = () => {
         dispatch(
           setUser({
             email: user.email,
-            id: user.uid,
+            userId: user.uid,
             token: user.accessToken,
           })
         );

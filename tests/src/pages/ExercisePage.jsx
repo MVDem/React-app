@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { countReset } from '../components/slices/testsSlice';
+import { countReset, setTestInWork } from '../components/slices/testsSlice';
+import { useAuth } from '../components/hooks/use-auth';
 import Button from '@mui/material/Button';
 import ProgressBar from '../components/ProgressBar';
 import Scheme1 from '../components/Scheme1';
@@ -10,15 +11,18 @@ export default function ExercisePage() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
   const [correctly, setCorrectly] = React.useState();
+  const countOfTrueAnswers = useSelector(
+    (state) => state.tests.testInWork.countOfTrueAnswers
+  );
   const tests = useSelector((state) => state.tests.tests);
-  const count = useSelector((state) => state.tests.countOfTrueAnswers);
+  const { userId } = useAuth();
   const dispatch = useDispatch();
 
-  const activeTestName = useParams().id;
+  const activeTestId = +useParams().id;
 
-  const activeExercises = tests.find(
-    (elem) => elem.nameTest === activeTestName
-  );
+  setTestInWork({ testId: activeTestId, workUserId: userId });
+
+  const activeExercises = tests.find((elem) => elem.id === activeTestId);
 
   const totalSteps = () => {
     return activeExercises.test.length;
@@ -86,18 +90,20 @@ export default function ExercisePage() {
   return (
     <>
       <section className="exercise">
-        <ProgressBar
-          activeExercises={activeExercises.test}
-          activeStep={activeStep}
-          completed={completed}
-          handleStep={handleStep}
-        />
+        {!allStepsCompleted() && (
+          <ProgressBar
+            activeExercises={activeExercises.test}
+            activeStep={activeStep}
+            completed={completed}
+            handleStep={handleStep}
+          />
+        )}
         <div>
           {allStepsCompleted() ? (
             <React.Fragment>
               <p className="exercise__text">
-                All steps completed - you&apos;re finished. You answered {count}{' '}
-                questions correctly.
+                All steps completed - you&apos;re finished. You answered{' '}
+                {countOfTrueAnswers} questions correctly.
               </p>
               <Button onClick={handleReset}>Reset</Button>
             </React.Fragment>

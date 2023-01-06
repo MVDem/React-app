@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   email: null,
   token: null,
-  id: null,
+  userId: null,
   name: null,
   lastName: null,
 };
@@ -13,25 +13,23 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action) {
-      state.email = action.payload.email;
-      state.token = action.payload.token;
-      state.id = action.payload.id;
-    },
-    setUserPerson(state, action) {
-      state.name = action.payload.name;
-      state.lastName = action.payload.lastName;
+      for (let key in action.payload) {
+        if (action.payload.hasOwnProperty(key)) {
+          state[key] = action.payload[key];
+        }
+      }
     },
 
     removeUser(state) {
       state.email = null;
       state.token = null;
-      state.id = null;
+      state.userId = null;
       state.name = null;
       state.lastName = null;
     },
   },
 });
 
-export const { setUser, setUserPerson, removeUser } = userSlice.actions;
+export const { setUser, removeUser } = userSlice.actions;
 
 export default userSlice.reducer;

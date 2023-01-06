@@ -45,7 +45,7 @@ export default function TestsList() {
                     reprehenderit repellendus esse?
                   </p>
 
-                  <Link to={`/tests/${test.nameTest}`}>
+                  <Link to={`/tests/${test.id}`}>
                     <button type="button" className="tests__button">
                       Пройти тест
                     </button>

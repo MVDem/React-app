@@ -19,7 +19,7 @@ const SignUp = () => {
         dispatch(
           setUser({
             email: user.email,
-            id: user.uid,
+            userId: user.uid,
             token: user.accessToken,
           })
         );

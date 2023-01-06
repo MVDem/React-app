@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/hooks/use-auth';
-import { setUserPerson } from './slices/userSlice';
+import { setUser } from './slices/userSlice';
 import { setData } from '../firebase';
 
 const Register = () => {
@@ -22,7 +22,7 @@ const Register = () => {
 
   const handleRegister = (name, lastName) => {
     dispatch(
-      setUserPerson({
+      setUser({
         name: name,
         lastName: lastName,
       })
