@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { countReset } from '../components/slices/testsSlice';
+import { countReset } from './slices/testsSlice';
 import Button from '@mui/material/Button';
-import ProgressBar from '../components/ProgressBar';
-import Scheme1 from '../components/Scheme1';
-import { useTestInWork } from '../components/hooks/use-testInWork';
+import ProgressBar from './ProgressBar';
+import Scheme1 from './Scheme1';
+import { useTestInWork } from './hooks/use-testInWork';
 
 export default function Exercise(props) {
   const [activeStep, setActiveStep] = React.useState(0);

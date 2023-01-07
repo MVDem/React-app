@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setTestInWork } from '../components/slices/testsSlice';
 import { useAuth } from '../components/hooks/use-auth';
-import Exercise from '../components/Exercise';
+import Exercise from '../components/exercise';
 import Result from '../components/Result';
 
 export default function ExercisePage() {
