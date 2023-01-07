@@ -1,85 +1,123 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
-import { countAdd } from './slices/testsSlice';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormLabel from '@mui/material/FormLabel';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { countReset } from '../components/slices/testsSlice';
 import Button from '@mui/material/Button';
+import ProgressBar from '../components/ProgressBar';
+import Scheme1 from '../components/Scheme1';
+import { useTestInWork } from '../components/hooks/use-testInWork';
 
-export default function Example(props) {
-  const [value, setValue] = React.useState(' ');
-  const [error, setError] = React.useState(false);
-  const [helperText, setHelperText] = React.useState('Select an answer');
-  const [activeLable, setActiveLable] = React.useState(false);
-  const [activeButton, setActiveButton] = React.useState(true);
+export default function Exercise(props) {
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [completed, setCompleted] = React.useState({});
+  const [correctly, setCorrectly] = React.useState();
+  const tests = useSelector((state) => state.tests.tests);
   const dispatch = useDispatch();
+  const activeTestId = +useParams().id;
 
-  const handleRadioChange = (event) => {
-    setValue(event.target.value);
-    setHelperText(' ');
-    setError(false);
-    setActiveButton(false);
+  const { startDate, endDate, countOfTrueAnswers } = useTestInWork();
+
+  const activeExercises = tests.find((elem) => elem.id === activeTestId);
+
+  const totalSteps = () => {
+    return activeExercises.test.length;
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (value === props.elem.answers[props.elem.trueanswer - 1]) {
-      setHelperText('You answered correctly!');
-      setError(false);
-      setActiveLable(true);
-      dispatch(countAdd());
-      props.setCorrectly(true);
-    } else if (value) {
-      setHelperText(
-        'Sorry, wrong answer! True answer: ' +
-          props.elem.answers[props.elem.trueanswer - 1]
-      );
-      setError(true);
-      setActiveLable(true);
-      props.setCorrectly(false);
-    } else {
-      setHelperText('Please select an option.');
-      setError(true);
+  const completedSteps = () => {
+    return Object.keys(completed).length;
+  };
+
+  const isLastStep = () => {
+    return activeStep === totalSteps() - 1;
+  };
+
+  const allStepsCompleted = () => {
+    if (completedSteps() === totalSteps()) {
+      props.setTestComplite(false);
     }
+    return completedSteps() === totalSteps();
+  };
+
+  const handleNext = () => {
+    const newActiveStep = function () {
+      if (isLastStep() && !allStepsCompleted()) {
+        return activeExercises.test.findIndex((step, i) => !(i in completed));
+      } else if (activeStep + 1 in completed) {
+        return activeExercises.test.findIndex(
+          (step, i) => i > activeStep && !(i in completed)
+        );
+      } else {
+        return activeStep + 1;
+      }
+    };
+    setActiveStep(newActiveStep);
+    handleComplete();
+    setCorrectly();
+  };
+
+  const handleStep = (step) => () => {
+    setActiveStep(step);
+  };
+
+  const handleComplete = () => {
+    const newCompleted = completed;
+    if (correctly !== undefined) {
+      newCompleted[activeStep] = correctly;
+    }
+    setCompleted(newCompleted);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+    setCompleted({});
+    dispatch(countReset());
+  };
+
+  const stepDisplay = (arr) => {
+    return (
+      <div key={arr[activeStep].numExercise} className="container">
+        <Scheme1
+          elem={arr[activeStep]}
+          handleComplete={handleComplete}
+          setCorrectly={setCorrectly}
+        />
+      </div>
+    );
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormControl sx={{ m: 3 }} error={error} variant="standard">
-        <FormLabel id="demo-error-radios">{props.elem.question}</FormLabel>
-        <RadioGroup
-          row
-          aria-labelledby="demo-error-radios"
-          name="quiz"
-          value={value}
-          onChange={handleRadioChange}
-        >
-          {props.elem.answers.map((answer, index) => {
-            return (
-              <FormControlLabel
-                key={index}
-                value={answer}
-                control={<Radio />}
-                label={answer}
-                disabled={activeLable}
-              />
-            );
-          })}
-        </RadioGroup>
-        <FormHelperText>{helperText}</FormHelperText>
-        <Button
-          sx={{ mt: 1, mr: 1 }}
-          type="submit"
-          variant="outlined"
-          disabled={activeButton}
-          //onClick={props.handleComplete}
-        >
-          Check Answer
-        </Button>
-      </FormControl>
-    </form>
+    <>
+      <section className="exercise">
+        {!allStepsCompleted() ? (
+          <div>
+            <ProgressBar
+              activeExercises={activeExercises.test}
+              activeStep={activeStep}
+              completed={completed}
+              handleStep={handleStep}
+            />
+            <React.Fragment>
+              <div className="exercise__answer">
+                {stepDisplay(activeExercises.test)}
+              </div>
+              <Button onClick={handleNext} sx={{ mr: 1 }}>
+                Next
+              </Button>
+            </React.Fragment>
+          </div>
+        ) : (
+          <React.Fragment>
+            <p className="exercise__text">
+              All steps completed - you&apos;re finished. You answered{' '}
+              {countOfTrueAnswers} questions correctly.
+            </p>
+            <p>
+              You spent {startDate} - {endDate}
+            </p>
+            <Button onClick={handleReset}>Reset</Button>
+          </React.Fragment>
+        )}
+      </section>
+    </>
   );
 }

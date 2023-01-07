@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
 
 export function useTestInWork() {
-  const { testId, workUserId, timestamp, workTime, countOfTrueAnswers } =
+  const { testId, workUserId, startDate, endDate, countOfTrueAnswers } =
     useSelector((state) => state.tests.testInWork);
 
   return {
     testId,
     workUserId,
-    timestamp,
-    workTime,
+    startDate,
+    endDate,
     countOfTrueAnswers,
   };
 }
