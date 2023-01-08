@@ -33,7 +33,7 @@ const SignIn = () => {
           })
         );
         getData(`users/${user.uid}`, setUserData);
-        navigate('/tests');
+        navigate('/tests', { replace: true });
       })
       .catch((error) => {
         alert(error);

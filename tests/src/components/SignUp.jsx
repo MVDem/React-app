@@ -23,7 +23,7 @@ const SignUp = () => {
             token: user.accessToken,
           })
         );
-        navigate('/signUp/register');
+        navigate('/signUp/register', { replace: true });
       })
       .catch(console.error);
   };
