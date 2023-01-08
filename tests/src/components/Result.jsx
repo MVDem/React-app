@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { countReset } from '../components/slices/testsSlice';
+import { NavLink } from 'react-router-dom';
+import { testReset } from '../components/slices/testsSlice';
 import Button from '@mui/material/Button';
 import { useTestInWork } from '../components/hooks/use-testInWork';
 import { setTestInWork } from '../components/slices/testsSlice';
-import { NavLink } from 'react-router-dom';
+import { getData, setData } from '../firebase';
+import { useState } from 'react';
 
 export default function Result() {
-  const { startDate, endDate, countOfTrueAnswers } = useTestInWork();
+  const { testId, workUserId, startDate, endDate, countOfTrueAnswers } =
+    useTestInWork();
+  const [lastData, setLastData] = useState({});
   const dispatch = useDispatch();
-
-  const handleReset = () => {
-    dispatch(countReset());
-  };
   React.useEffect(() => {
     const endDate = Date.now();
     dispatch(
@@ -20,9 +20,34 @@ export default function Result() {
         endDate: endDate,
       })
     );
+    getData(`results/${workUserId}/${testId}`, setLastData);
   }, []);
 
+  const handleFinish = () => {
+    if (countOfTrueAnswers > lastData.count) {
+      setData(`results/${workUserId}/${testId}`, resultData);
+    }
+    dispatch(testReset());
+  };
+
+  const resultData = {
+    userId: workUserId,
+    testId: testId,
+    timeStamp: startDate,
+    count: countOfTrueAnswers,
+  };
+
   const timeWork = endDate - startDate;
+
+  const getResultDate = (t) => {
+    const Y = t.getFullYear();
+    const M = t.getMonth() + 1;
+    const d = t.getDate();
+    const h = t.getHours();
+    const m = t.getMinutes();
+    const s = t.getSeconds();
+    return `${h}:${m}:${s} on ${d}/${M}/${Y}`;
+  };
 
   const getUserTime = (t = new Date()) => {
     const m = t.getMinutes();
@@ -35,14 +60,21 @@ export default function Result() {
     <>
       <section className="exercise">
         <React.Fragment>
-          <p className="exercise__text">
-            All steps completed - you&apos;re finished. You answered{' '}
-            {countOfTrueAnswers} questions correctly.
-          </p>
-          <p>You spent {getUserTime(new Date(timeWork))}! </p>
-
+          <div>
+            <p className="exercise__text">
+              All steps completed - you&apos;re finished. You answered{' '}
+              {countOfTrueAnswers} questions correctly.
+            </p>
+            <p className="exercise__text">
+              You spent {getUserTime(new Date(timeWork))}!{' '}
+            </p>
+            <p className="exercise__text">
+              Your best score is {lastData.count} has been received{' '}
+              {getResultDate(new Date(lastData.timeStamp))}
+            </p>
+          </div>
           <NavLink to="/tests" className="header__btn">
-            <Button onClick={handleReset}>Сhoose a new test</Button>
+            <Button onClick={handleFinish}>Сhoose a new test</Button>
           </NavLink>
         </React.Fragment>
       </section>

@@ -1,21 +1,16 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { countReset } from './slices/testsSlice';
+import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import ProgressBar from './ProgressBar';
 import Scheme1 from './Scheme1';
-import { useTestInWork } from './hooks/use-testInWork';
 
 export default function Exercise(props) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
   const [correctly, setCorrectly] = React.useState();
   const tests = useSelector((state) => state.tests.tests);
-  const dispatch = useDispatch();
   const activeTestId = +useParams().id;
-
-  const { startDate, endDate, countOfTrueAnswers } = useTestInWork();
 
   const activeExercises = tests.find((elem) => elem.id === activeTestId);
 
@@ -67,12 +62,6 @@ export default function Exercise(props) {
     setCompleted(newCompleted);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-    setCompleted({});
-    dispatch(countReset());
-  };
-
   const stepDisplay = (arr) => {
     return (
       <div key={arr[activeStep].numExercise} className="container">
@@ -88,35 +77,22 @@ export default function Exercise(props) {
   return (
     <>
       <section className="exercise">
-        {!allStepsCompleted() ? (
-          <div>
-            <ProgressBar
-              activeExercises={activeExercises.test}
-              activeStep={activeStep}
-              completed={completed}
-              handleStep={handleStep}
-            />
-            <React.Fragment>
-              <div className="exercise__answer">
-                {stepDisplay(activeExercises.test)}
-              </div>
-              <Button onClick={handleNext} sx={{ mr: 1 }}>
-                Next
-              </Button>
-            </React.Fragment>
-          </div>
-        ) : (
+        <div>
+          <ProgressBar
+            activeExercises={activeExercises.test}
+            activeStep={activeStep}
+            completed={completed}
+            handleStep={handleStep}
+          />
           <React.Fragment>
-            <p className="exercise__text">
-              All steps completed - you&apos;re finished. You answered{' '}
-              {countOfTrueAnswers} questions correctly.
-            </p>
-            <p>
-              You spent {startDate} - {endDate}
-            </p>
-            <Button onClick={handleReset}>Reset</Button>
+            <div className="exercise__answer">
+              {stepDisplay(activeExercises.test)}
+            </div>
+            <Button onClick={handleNext} sx={{ mr: 1 }}>
+              Next
+            </Button>
           </React.Fragment>
-        )}
+        </div>
       </section>
     </>
   );

@@ -18,6 +18,7 @@ const testsSlice = createSlice({
     testsAdd(state, action) {
       state.tests = [...action.payload];
     },
+
     setTestInWork(state, action) {
       for (let key in action.payload) {
         if (action.payload.hasOwnProperty(key)) {
@@ -26,15 +27,11 @@ const testsSlice = createSlice({
       }
     },
 
-    setEndDate(state, action) {
-      state.testInWork.endDate = action.payload.endDate;
-    },
-
     countAdd(state, action) {
       state.testInWork.countOfTrueAnswers++;
     },
 
-    countReset(state, action) {
+    testReset(state, action) {
       state.testInWork.testId = null;
       state.testInWork.startDate = null;
       state.testInWork.endDate = null;
@@ -43,6 +40,6 @@ const testsSlice = createSlice({
   },
 });
 
-export const { testsAdd, setTestInWork, setEndDate, countAdd, countReset } =
+export const { testsAdd, setTestInWork, setEndDate, countAdd, testReset } =
   testsSlice.actions;
 export default testsSlice.reducer;
