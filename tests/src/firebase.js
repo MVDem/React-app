@@ -19,7 +19,7 @@ export const db = getDatabase(app);
 
 export const setData = (area, param) => {
   set(ref(db, area), param).catch((error) => {
-    alert('not ok' + error);
+    console.log('not ok' + error);
   });
 };
 
@@ -31,7 +31,7 @@ export const getData = (area, callBack) => {
         const data = snapshot.val();
         callBack(data);
       } else {
-        alert('No data available');
+        console.log('No data available');
       }
     })
     .catch((error) => {

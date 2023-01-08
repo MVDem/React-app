@@ -24,7 +24,7 @@ export default function Result() {
   }, []);
 
   const handleFinish = () => {
-    if (countOfTrueAnswers > lastData.count) {
+    if (countOfTrueAnswers > lastData.count || !lastData.count) {
       setData(`results/${workUserId}/${testId}`, resultData);
     }
     dispatch(testReset());
@@ -68,10 +68,12 @@ export default function Result() {
             <p className="exercise__text">
               You spent {getUserTime(new Date(timeWork))}!{' '}
             </p>
-            <p className="exercise__text">
-              Your best score is {lastData.count} has been received{' '}
-              {getResultDate(new Date(lastData.timeStamp))}
-            </p>
+            {lastData.count && (
+              <p className="exercise__text">
+                Your best score is {lastData.count} has been received{' '}
+                {getResultDate(new Date(lastData.timeStamp))}
+              </p>
+            )}
           </div>
           <NavLink to="/tests" className="header__btn">
             <Button onClick={handleFinish}>Сhoose a new test</Button>
